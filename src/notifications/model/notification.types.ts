@@ -8,3 +8,5 @@ export interface Notification {
   date: string;
   read: boolean;
 }
+
+export type NotificationCategory = "all" | "alert" | "message" | "update";
