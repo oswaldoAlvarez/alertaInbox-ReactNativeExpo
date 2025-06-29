@@ -1,5 +1,5 @@
 import { Tag } from "@/src/shared/ui/tag/Tag.component";
-import { useTheme } from "@react-navigation/native";
+import { useThemeToggle } from "@/src/theme/ThemeContext";
 import { ScrollView } from "react-native";
 import { NotificationCategory } from "../../model/notification.types";
 import { styles } from "./HomeTags.styles";
@@ -10,7 +10,7 @@ interface IHomeTags {
 }
 
 export const HomeTags = ({ active, setCategory }: IHomeTags) => {
-  const { colors } = useTheme();
+  const { colors } = useThemeToggle();
 
   const tagConfigs = [
     {
@@ -61,6 +61,7 @@ export const HomeTags = ({ active, setCategory }: IHomeTags) => {
               : {},
           ]}
           textStyle={{
+            color: active ? "#fff" : colors.text,
             fontWeight: active ? "bold" : "normal",
           }}
         />
