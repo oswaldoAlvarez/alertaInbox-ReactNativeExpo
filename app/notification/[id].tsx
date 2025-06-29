@@ -2,6 +2,7 @@ import { iconByType } from "@/src/shared/lib/notificationIcons";
 import { MainContainer } from "@/src/shared/ui/mainContainer/MainContainer.component";
 import { TextView } from "@/src/shared/ui/textView/TextView.component";
 import { useThemeToggle } from "@/src/theme/ThemeContext";
+import { styles } from "@/styles/notification/[id]";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useEffect } from "react";
 import { TouchableOpacity, View } from "react-native";
@@ -24,61 +25,49 @@ export default function NotificationDetail() {
 
   if (!notification) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View style={styles.notFoundContainer}>
         <TextView>No encontrada</TextView>
       </View>
     );
   }
 
+  const handleBack = () => router.back();
+
   return (
     <MainContainer>
-      <View
-        style={{
-          padding: 24,
-          alignItems: "center",
-          justifyContent: "flex-start",
-        }}
-      >
-        <View style={{ marginBottom: 20 }}>
-          {iconByType[notification.type]}
-        </View>
+      <View style={styles.container}>
+        <View style={styles.icon}>{iconByType[notification.type]}</View>
+        <TextView textStyles={styles.title}>{notification.title}</TextView>
         <TextView
-          textStyles={{ fontWeight: "bold", fontSize: 22, marginBottom: 16 }}
-        >
-          {notification.title}
-        </TextView>
-        <TextView
-          textStyles={{
-            fontSize: 16,
-            marginBottom: 16,
-            color: isDark ? colors.text : "#444",
-          }}
+          textStyles={[
+            styles.description,
+            {
+              color: isDark ? colors.text : "#444",
+            },
+          ]}
         >
           {notification.description}
         </TextView>
         <TextView
-          style={{
-            fontSize: 13,
-            color: isDark ? colors.text : "grey",
-            marginBottom: 30,
-          }}
+          style={[
+            styles.date,
+            {
+              color: isDark ? colors.text : "grey",
+            },
+          ]}
         >
           {notification.date}
         </TextView>
         <TouchableOpacity
-          onPress={() => router.back()}
-          style={{
-            borderWidth: 1,
-            borderColor: "#d3d3d3",
-            borderRadius: 8,
-            paddingVertical: 12,
-            paddingHorizontal: 24,
-            alignItems: "center",
-          }}
+          onPress={handleBack}
+          style={[
+            styles.button,
+            {
+              borderColor: colors.border,
+            },
+          ]}
         >
-          <TextView textStyles={{ fontWeight: "bold", fontSize: 16 }}>
-            Volver
-          </TextView>
+          <TextView textStyles={styles.textButton}>Volver</TextView>
         </TouchableOpacity>
       </View>
     </MainContainer>

@@ -3,7 +3,8 @@ import { TextView } from "@/src/shared/ui/textView/TextView.component";
 import { useThemeToggle } from "@/src/theme/ThemeContext";
 import React from "react";
 import { TouchableOpacity, View } from "react-native";
-import { Notification } from "../model/notification.types";
+import { Notification } from "../../model/notification.types";
+import { styles } from "./NotificationCard.styles";
 
 type INotificationCard = {
   notification: Notification;
@@ -19,32 +20,30 @@ export const NotificationCard = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={{
-        backgroundColor: notification.read
-          ? colors.card
-          : colors.notificationRead,
-        borderColor: colors.border,
-        borderWidth: 1,
-        padding: 16,
-        marginVertical: 8,
-        borderRadius: 12,
-        flexDirection: "row",
-        alignItems: "center",
-      }}
+      style={[
+        styles.container,
+        {
+          backgroundColor: notification.read
+            ? colors.card
+            : colors.notificationRead,
+          borderColor: colors.border,
+        },
+      ]}
     >
-      <View style={{ marginRight: 12 }}>{iconByType[notification.type]}</View>
-      <View style={{ flex: 1 }}>
-        <TextView textStyles={{ fontWeight: "bold", fontSize: 18 }}>
-          {notification.title}
-        </TextView>
+      <View style={styles.icon}>{iconByType[notification.type]}</View>
+      <View>
+        <TextView textStyles={styles.title}>{notification.title}</TextView>
         <TextView
           numberOfLines={1}
-          textStyles={{ color: isDark ? colors.text : "#444", fontSize: 14 }}
+          textStyles={[
+            styles.description,
+            { color: isDark ? colors.text : "#444" },
+          ]}
         >
           {notification.description}
         </TextView>
         <TextView
-          textStyles={{ fontSize: 12, color: isDark ? colors.text : "grey" }}
+          textStyles={[styles.date, { color: isDark ? colors.text : "grey" }]}
         >
           {notification.date}
         </TextView>

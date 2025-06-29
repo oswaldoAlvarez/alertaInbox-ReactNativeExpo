@@ -20,7 +20,8 @@ export const ThemeContext = createContext({
 export function ThemeProvider({ children }: PropsWithChildren) {
   const [theme, setTheme] = useState(defaultTheme);
 
-  const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
+  const toggleTheme = () =>
+    setTheme((theme) => (theme === "dark" ? "light" : "dark"));
 
   const value = useMemo(
     () => ({

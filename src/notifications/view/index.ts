@@ -1,1 +1,1 @@
-export { NotificationScreen } from "./NotificationScreen.screen";
+export { NotificationScreen } from "./notificationScreen/NotificationScreen.screen";
