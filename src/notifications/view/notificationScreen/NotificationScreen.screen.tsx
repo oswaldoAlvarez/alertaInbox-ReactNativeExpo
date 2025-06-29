@@ -57,6 +57,7 @@ export const NotificationScreen = () => {
       <FlatList
         data={filtered}
         keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
           <NotificationCard
             key={item.id}
