@@ -1,6 +1,6 @@
 # Welcome to your Expo app 👋
 
-![demo](https://github.com/user-attachments/assets/f11e7322-91dc-4609-a308-ec5dbbd90de8)
+![phrasesapp](https://github.com/user-attachments/assets/4523751e-a3ed-4f24-9e41-8a8b49f4d815)
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
